@@ -4,6 +4,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import { InsuranceServiceService } from '../service/insurance-service.service';
 import { InsuranceDataSource } from './InsuranceDataSource';
 import {  tap, merge } from 'rxjs';
+import { Insurance } from '../interfaces/insurance';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,11 +15,11 @@ import {  tap, merge } from 'rxjs';
 })
 export class InsurancesTableComponent {
   
-  constructor(private insuranceService:InsuranceServiceService){
+  constructor(private insuranceService:InsuranceServiceService,private router: Router){
     
   }
   dataSource: InsuranceDataSource | undefined;
-  displayedColumns= ["Policy_id","Customer_id","Customer_Region"];
+  displayedColumns= ["Policy_id","Customer_id","Customer_Region","det"];
 
     @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
     @ViewChild(MatSort) sort: MatSort | undefined;
@@ -31,7 +33,6 @@ export class InsurancesTableComponent {
     }
 
     ngAfterViewInit() {
-        
       // reset the paginator after sorting
       //this.sort!.sortChange.subscribe(() => this.paginator!.pageIndex = 0);
       
@@ -48,6 +49,14 @@ export class InsurancesTableComponent {
             '',
             this.paginator!.pageIndex,
             this.paginator!.pageSize);
+    }
+
+    goToDetail(insurance :Insurance){
+      console.log("clicked");
+      this.router.navigate(
+        ['insurance'],
+        { queryParams: { 'policy_id': insurance.Policy_id, 'customer_id': insurance.Customer_id } }
+      );
     }
 
 

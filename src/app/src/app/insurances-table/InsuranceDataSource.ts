@@ -32,7 +32,10 @@ export class InsuranceDataSource implements DataSource<Insurance> {
         this.insuranceService.findInsurance( filter, sortDirection,
             pageIndex, pageSize).pipe(
             catchError(() => of([])),
-            finalize(() => this.loadingSubject.next(false))
+            finalize(() => {
+                this.loadingSubject.next(false);
+            }
+        )
         )
         .subscribe((insurance:any) => {
             console.log(insurance);

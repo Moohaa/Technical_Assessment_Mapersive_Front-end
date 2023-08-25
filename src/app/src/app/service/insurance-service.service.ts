@@ -34,4 +34,19 @@ export class InsuranceServiceService {
         map((res: any) => res["result"])
       );
   }
+
+
+  getInsuranceDetails(
+    policy_id:string ,customer_id:string
+  ) {
+    return this.http
+      .get(BASE_URL+'/insurance',{
+        params: new HttpParams()
+          .set('policy_id', policy_id)
+          .set('customer_id', customer_id),
+      })
+      .pipe(
+        map((res: any) => res["result"])
+      );
+  }
 }

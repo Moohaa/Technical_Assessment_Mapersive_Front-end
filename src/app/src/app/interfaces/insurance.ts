@@ -1,10 +1,9 @@
 
 
-
 export interface Insurance {
     Policy_id:Number,
     date:string,
-    customerId:Number,
+    Customer_id:Number,
     fuelType:string,
     vehicleSegment:string
     premium:number,

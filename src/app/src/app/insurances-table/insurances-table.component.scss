@@ -3,12 +3,12 @@
   flex-direction: column;
   min-width: 300px;
 }
-
-.table-container {
-  width: 97%;
+.spinner-container{
+  position:absolute;
+  width: 100%;
   margin: auto;
-  margin-top: 20px;
 }
+
 
 .example-header {
   min-height: 64px;
@@ -23,4 +23,20 @@
 .mat-table {
   overflow: auto;
   max-height: 500px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+
+.mat-column-det {
+  display: flex;
+  justify-content: end;
+  
 }
