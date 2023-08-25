@@ -4,7 +4,7 @@
     <div>
         <mat-form-field class="example-full-width">
             <mat-label>Search</mat-label>
-            <input matInput placeholder="Ex. 1002" value="">
+            <input matInput placeholder="Customer id" #input>
           </mat-form-field>
     </div>
     <div class="spinner-container" *ngIf="dataSource!.loading$ | async">
@@ -12,22 +12,26 @@
     </div>
     <mat-table [dataSource]="dataSource!" matSort>
         
-      <!-- ID Column -->
-      <ng-container matColumnDef="Policy_id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Policy_id}} </mat-cell>
-      </ng-container>
+      
   
       <!-- Customer -->
       <ng-container matColumnDef="Customer_id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Customer_id</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Customer_id}}% </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Customer_id}} </mat-cell>
       </ng-container>
+
+     
   
       <!-- -->
-      <ng-container matColumnDef="Customer_Region">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Customer_Regio </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.Customer_Region}} </mat-cell>
+      <ng-container matColumnDef="Number_Of_subscription">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Subscriptions  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.policies.split(',').length}} </mat-cell>
+      </ng-container>
+
+       <!-- ID Column -->
+       <ng-container matColumnDef="Policies_id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Insurances Polices ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.policies }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="det">
@@ -48,7 +52,7 @@
 
   <mat-paginator
     [pageSize]="10"
-    [length]="55"
-    [pageSizeOptions]="[13, 6, 3]"
+    [length]="count"
+    [pageSizeOptions]="[11, 8, 10]"
   ></mat-paginator>
 </div>

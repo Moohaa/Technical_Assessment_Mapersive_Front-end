@@ -2,10 +2,19 @@
 
 export interface Insurance {
     Policy_id:Number,
-    date:string,
     Customer_id:Number,
-    fuelType:string,
+    Fuel:string,
     vehicleSegment:string
-    premium:number,
-    bodily_injury_liability:number
+    bodily_injury_liability:number,
+    personal_injury_protection:number,
+    property_damage_liability:number,
+    collision:number,
+    comprehensive:number,
+    Date_of_Purchase:string,
+    VEHICLE_SEGMENT:string,
+    Premium:string,
+    Customer_Gender:string,
+    Customer_Income_group:string,
+    Customer_Region:string,
+    Customer_Marital_status:string
 }
