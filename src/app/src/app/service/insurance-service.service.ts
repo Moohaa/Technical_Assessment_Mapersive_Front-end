@@ -18,17 +18,19 @@ export class InsuranceServiceService {
 
 
 
-  findInsurance(
+  findCustomers(
     filter = '',
     sortOrder = 'asc',
     pageNumber = 0,
     pageSize = 3
   ) {
     return this.http
-      .get(BASE_URL+'/insurances',{
+      .get(BASE_URL+'/customers',{
         params: new HttpParams()
           .set('pageNumber', pageNumber.toString())
-          .set('pageSize', pageSize.toString()),
+          .set('pageSize', pageSize.toString())
+          .set('customer_id', filter)
+
       })
       .pipe(
         map((res: any) => res["result"])
@@ -37,16 +39,36 @@ export class InsuranceServiceService {
 
 
   getInsuranceDetails(
-    policy_id:string ,customer_id:string
+    customer_id:string
   ) {
     return this.http
-      .get(BASE_URL+'/insurance',{
+      .get(BASE_URL+'/insurances',{
         params: new HttpParams()
-          .set('policy_id', policy_id)
           .set('customer_id', customer_id),
       })
       .pipe(
         map((res: any) => res["result"])
       );
   }
+
+  getCustomer(
+    customer_id:string
+  ){
+    return this.http
+      .get(BASE_URL+'/customers/'+customer_id)
+      .pipe(
+        map((res: any) => res["result"])
+      );
+  }
+
+  getCustomersCount(
+  ){
+    return this.http
+      .get(BASE_URL+'/customersCounts')
+      .pipe(
+        map((res: any) => res["result"])
+      );
+  }
+
+  
 }

@@ -29,13 +29,14 @@ export class InsuranceDataSource implements DataSource<Insurance> {
 
         this.insuranceService.getAllInsurances();
 
-        this.insuranceService.findInsurance( filter, sortDirection,
+        this.insuranceService.findCustomers( filter, sortDirection,
             pageIndex, pageSize).pipe(
             catchError(() => of([])),
             finalize(() => {
                 this.loadingSubject.next(false);
+                
             }
-        )
+                )
         )
         .subscribe((insurance:any) => {
             console.log(insurance);

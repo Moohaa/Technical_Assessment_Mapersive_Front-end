@@ -14,12 +14,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatCardModule} from '@angular/material/card'; 
+import {MatDividerModule} from '@angular/material/divider';
+import { YesNoPipePipe } from './src/app/utils/yes-no-pipe.pipe'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     InsurancesTableComponent,
-    InsurancesDetailsComponent
+    InsurancesDetailsComponent,
+    YesNoPipePipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

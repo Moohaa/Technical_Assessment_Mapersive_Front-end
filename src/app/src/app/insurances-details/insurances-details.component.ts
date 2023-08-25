@@ -5,54 +5,65 @@ import { catchError, finalize } from 'rxjs/operators';
 import { Insurance } from '../interfaces/insurance';
 import { InsuranceServiceService } from '../service/insurance-service.service';
 import { Router } from '@angular/router';
-
+import { Customer } from '../interfaces/Customer';
 
 @Component({
   selector: 'app-insurances-details',
   templateUrl: './insurances-details.component.html',
-  styleUrls: ['./insurances-details.component.scss']
+  styleUrls: ['./insurances-details.component.scss'],
 })
 export class InsurancesDetailsComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private insuranceService: InsuranceServiceService,
+    private router: Router
+  ) {}
 
+  insuranceDetails: Insurance[] = [];
 
-  constructor(private route: ActivatedRoute,private insuranceService : InsuranceServiceService,private router :Router) { }
+  policy_id: string = '';
+  customer_id: string = '';
 
-
-  insuranceDetails:Insurance[]=[];
-
-  policy_id:string="";
-  customer_id:string="";
-
-
+  customer:Customer={
+    Customer_Region:"",
+    Customer_Marital_status:"",
+    Customer_Income_group:"",
+    Customer_Gender:""
+  };
 
   ngOnInit() {
-    this.route.queryParams
-      .subscribe((params: any) => {
-        console.log(params);
+    this.route.queryParams.subscribe((params: any) => {
 
-        this.policy_id=params.policy_id;
-        this.customer_id=params.customer_id;
-        this.getInsuranceDetails(params.policy_id,params.customer_id);
-      }
-    );
+      this.customer_id = params.customer_id;
+      this.getInsuranceDetails(params.customer_id);
+      this.getCustomer(this.customer_id);
+
+    });
   }
 
-
-  getInsuranceDetails(policy_id:string,customer_id:string){
-    this.insuranceService.getInsuranceDetails( policy_id,customer_id).pipe(
-      catchError(() => of([])),
-      finalize(() => {
-          
-      }
-  )
-  )
-  .subscribe((insurance:any) => {
-     this.insuranceDetails=insurance;
-  
-  })
+  getInsuranceDetails(customer_id: string) {
+    this.insuranceService
+      .getInsuranceDetails(customer_id)
+      .pipe(
+        catchError(() => of([])),
+        finalize(() => {})
+      )
+      .subscribe((insurance: any) => {
+        this.insuranceDetails = insurance;
+      });
   }
-
-  back(){
-    this.router.navigate([""]);
+  getCustomer(customer_id:string){
+    this.insuranceService
+      .getCustomer(customer_id)
+      .pipe(
+        catchError(() => of([])),
+        finalize(() => {})
+      )
+      .subscribe((customer: any) => {
+        this.customer = customer;
+      });
+  }
+  back() {
+    this.router.navigate(['']);
   }
 }

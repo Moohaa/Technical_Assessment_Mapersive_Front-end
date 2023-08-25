@@ -1,36 +1,83 @@
-
-
-
 <div>
-    <div style="width: 100%;height: fit-content;background-color: RGB(66, 66, 66);display: flex;flex-direction: row;align-items: center;">
-        <div style="margin: 4px;">
-            <button mat-fab color="primary"  (click)="back()">
-                <mat-icon>arrow_back</mat-icon>
-              </button>
-        </div>
-        <div>
-            <span style="color: aliceblue; margin-left: 10px;">Policy ID ({{policy_id}}) && Customer ID ({{customer_id}})</span>
-        </div>
-        
-          
+  <div
+    style="
+      width: 100%;
+      height: fit-content;
+      background-color: RGB(66, 66, 66);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    "
+  >
+    <div style="margin: 4px">
+      <button mat-fab color="primary" (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
     </div>
-    <div class="container">
-        
-        <mat-card *ngFor="let insurance of insuranceDetails" class="card">
-            <mat-card-header>
-                <div mat-card-avatar class="header-image">
-                    <mat-icon style="margin: auto;">person</mat-icon>
-                </div>
-                <mat-card-title>User 1</mat-card-title>
-                <mat-card-subtitle>Male</mat-card-subtitle>
-              </mat-card-header>
-            <mat-card-content>
-              <p>{{insurance | json}}</p>
+  </div>
+  <div style="margin-top: 5px;">
+    <h1>Customer Details</h1>
+    <mat-card class="card">
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div >
+        <span>Customer Gender : {{ customer!.Customer_Gender }}</span><br>
+          <span>Customer_Region : {{ customer!.Customer_Region }}</span
+          ><br />
+          <span>
+            Customer_Marital_status :
+            {{ customer!.Customer_Marital_status | yesNoPipe }} </span
+          ><br />
 
-            </mat-card-content>
-            
-          </mat-card>
+          <span
+            >Customer_Income_group : {{ customer!.Customer_Income_group }}</span
+          ><br />
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <h1 style="margin-top: 5px;">Customer  Insurance Subscriptions</h1>
+  </div>
+  <div class="container">
+    <mat-card
+      *ngFor="let insurance of insuranceDetails; let i = index"
+      class="card"
+    >
+      <mat-card-header>
+        <mat-card-title>Subscription N {{ i + 1 }}</mat-card-title>
+        <mat-card-subtitle> {{ insurance.Customer_Region }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div >
+          <span>Date_of_Purchase : {{ insurance.Date_of_Purchase }}</span
+          ><br />
+          <span>VEHICLE_SEGMENT : {{ insurance.VEHICLE_SEGMENT }}</span
+          ><br />
+          <span>Premium : {{ insurance.Premium }}</span
+          ><br />
+          <span>Fuel : {{ insurance.Fuel }}</span
+          ><br />
+          <span>
+            bodily_injury_liability :
+            {{ insurance.bodily_injury_liability | yesNoPipe }} </span
+          ><br />
+          <span>
+            personal_injury_protection :
+            {{ insurance.personal_injury_protection | yesNoPipe }} </span
+          ><br />
+          <span>
+            property_damage_liability :
+            {{ insurance.property_damage_liability  | yesNoPipe}} </span
+          ><br />
+          <span>collision : {{ insurance.collision  | yesNoPipe}}</span
+          ><br />
+          <span>comprehensive : {{ insurance.comprehensive | yesNoPipe }}</span
+          ><br />
           
-
-    </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
