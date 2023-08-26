@@ -6,7 +6,7 @@ In this article, we are going to present the developed solution and then discuss
 ## Results 
 - Main Screen.
 
-![screen](https://raw.githubusercontent.com/Moohaa/Technical_Assessment_Mapersive_Front-end/master/screenShots/global_view.png?token=GHSAT0AAAAAACBYWV5DMXKNEGLJWAA5EQ4AZHJ6XFA)
+![screen](./global_view.png)
 
 On this screen, we present the customers registered in our system, along with their number of subscriptions (the count of policies they have), thier insurance policy IDs, and finally, a button to access more information.
 
@@ -14,14 +14,14 @@ To improve loading times, we have implemented progressive loading, which means t
 
 - Search by Customer ID 
 
-![screen](https://raw.githubusercontent.com/Moohaa/Technical_Assessment_Mapersive_Front-end/master/screenShots/search_by_customer_id.png?token=GHSAT0AAAAAACBYWV5DGCUZXZFC3W6MBO3OZHJ62FA)
+![screen](./search_by_customer_id.png)
 
 
 We can search for customer. This functionality allows us to perform a search using a string, and the table will display all customers whose IDs start with the provided string
 
 - Customer Details Screen.
 
-![screen](https://raw.githubusercontent.com/Moohaa/Technical_Assessment_Mapersive_Front-end/master/screenShots/customer_detailsView.png?token=GHSAT0AAAAAACBYWV5CONNSTXMFYJWO3TESZHJ62PA)
+![screen](./customer_detailsView.png)
 
 This screen displays two sections.
 
