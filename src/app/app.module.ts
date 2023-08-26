@@ -16,6 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatDividerModule} from '@angular/material/divider';
 import { YesNoPipePipe } from './src/app/utils/yes-no-pipe.pipe'; 
+import {MatSort, MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { YesNoPipePipe } from './src/app/utils/yes-no-pipe.pipe';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule, MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

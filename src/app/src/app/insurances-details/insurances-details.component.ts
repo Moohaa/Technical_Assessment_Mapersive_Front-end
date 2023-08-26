@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
@@ -6,6 +6,9 @@ import { Insurance } from '../interfaces/insurance';
 import { InsuranceServiceService } from '../service/insurance-service.service';
 import { Router } from '@angular/router';
 import { Customer } from '../interfaces/Customer';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-insurances-details',
@@ -13,13 +16,22 @@ import { Customer } from '../interfaces/Customer';
   styleUrls: ['./insurances-details.component.scss'],
 })
 export class InsurancesDetailsComponent implements OnInit {
+
+  displayedColumns: string[] = ['Policy_id', 'Date_of_Purchase', 'Fuel', 'comprehensive','property_damage_liability','personal_injury_protection','bodily_injury_liability'
+                 ,'VEHICLE_SEGMENT','Premium'];
+  dataSource: MatTableDataSource<Insurance> | undefined;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  @ViewChild(MatSort) sort: MatSort | undefined;
+
+
+  
   constructor(
     private route: ActivatedRoute,
     private insuranceService: InsuranceServiceService,
     private router: Router
   ) {}
 
-  insuranceDetails: Insurance[] = [];
 
   policy_id: string = '';
   customer_id: string = '';
@@ -40,6 +52,14 @@ export class InsurancesDetailsComponent implements OnInit {
 
     });
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource!.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource!.paginator) {
+      this.dataSource!.paginator.firstPage();
+    }
+  }
 
   getInsuranceDetails(customer_id: string) {
     this.insuranceService
@@ -49,7 +69,9 @@ export class InsurancesDetailsComponent implements OnInit {
         finalize(() => {})
       )
       .subscribe((insurance: any) => {
-        this.insuranceDetails = insurance;
+        this.dataSource= new MatTableDataSource(insurance);
+        this.dataSource!.paginator = this.paginator!;
+         this.dataSource!.sort = this.sort!;
       });
   }
   getCustomer(customer_id:string){
@@ -63,6 +85,8 @@ export class InsurancesDetailsComponent implements OnInit {
         this.customer = customer;
       });
   }
+
+
   back() {
     this.router.navigate(['']);
   }

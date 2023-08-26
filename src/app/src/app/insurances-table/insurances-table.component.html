@@ -16,7 +16,7 @@
   
       <!-- Customer -->
       <ng-container matColumnDef="Customer_id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef > Customer ID</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.Customer_id}} </mat-cell>
       </ng-container>
 
@@ -24,18 +24,18 @@
   
       <!-- -->
       <ng-container matColumnDef="Number_Of_subscription">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Subscriptions  </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef > Number of Subscriptions  </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.policies.split(',').length}} </mat-cell>
       </ng-container>
 
        <!-- ID Column -->
        <ng-container matColumnDef="Policies_id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Insurances Polices ID </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef > Insurances Polices ID </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.policies }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="det">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef > </mat-header-cell>
         <mat-cell *matCellDef="let row">
             <button mat-mini-fab color="primary" aria-label="" (click)="goToDetail(row)">
                 <mat-icon>arrow_forward</mat-icon>
