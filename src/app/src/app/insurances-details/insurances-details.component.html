@@ -52,19 +52,16 @@
             <td mat-cell *matCellDef="let row"> {{row.Policy_id}} </td>
           </ng-container>
       
-          <!-- Progress Column -->
           <ng-container matColumnDef="Date_of_Purchase">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date_of_Purchase </th>
             <td mat-cell *matCellDef="let row"> {{row.Date_of_Purchase}} </td>
           </ng-container>
       
-          <!-- Name Column -->
           <ng-container matColumnDef="Fuel">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Fuel </th>
             <td mat-cell *matCellDef="let row"> {{row.Fuel}} </td>
           </ng-container>
       
-          <!-- Fruit Column -->
           <ng-container matColumnDef="comprehensive">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>comprehensive </th>
             <td mat-cell *matCellDef="let row"> {{row.comprehensive | yesNoPipe}} </td>

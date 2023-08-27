@@ -23,7 +23,7 @@ export class InsuranceDataSource implements DataSource<Insurance> {
         this.loadingSubject.complete();
     }
 
-    loadInsurances( filter = '',sortDirection = 'asc', pageIndex = 0, pageSize = 3) {
+    loadInsurances( filter = '',sortDirection = 'asc', pageIndex = 0, pageSize = 10) {
 
         this.loadingSubject.next(true);
 
